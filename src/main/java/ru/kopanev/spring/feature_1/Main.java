@@ -1,9 +1,4 @@
-package ru.kopanev.spring;
-
-import ru.kopanev.spring.feature_1.Animal;
-import ru.kopanev.spring.feature_1.Cat;
-import ru.kopanev.spring.feature_1.Dog;
-import ru.kopanev.spring.feature_1.Tiger;
+package ru.kopanev.spring.feature_1;
 
 public class Main {
     public static void main(String[] args) {
