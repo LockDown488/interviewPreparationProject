@@ -9,13 +9,6 @@ public class Treadmill extends Obstacle {
 
     @Override
     boolean overcome(Moveable participant) {
-        if (participant instanceof Human) {
-            return ((Human) participant).run(length);
-        } else if (participant instanceof Cat) {
-            return ((Cat) participant).run(length);
-        } else if (participant instanceof Robot) {
-            return ((Robot) participant).run(length);
-        }
-        return false;
+        return participant.run(length);
     }
 }
