@@ -12,9 +12,8 @@ public class Robot implements Moveable {
             return true;
         } else {
             System.out.println("Робот не смог пробежать");
+            return false;
         }
-
-        return false;
     }
 
     @Override
@@ -24,8 +23,7 @@ public class Robot implements Moveable {
             return true;
         } else {
             System.out.println("Робот не смог перепрыгнуть препятствие");
+            return false;
         }
-
-        return false;
     }
 }
