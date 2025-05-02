@@ -49,10 +49,10 @@ public class ShopService {
         Customer customer = customerRepository.findByName(customerName);
         Product product = productRepository.findByName(productName);
 
-        Purchase purchase = Purchase.builder()
-                .customer(customer)
-                .product(product)
-                .build();
+        Purchase purchase = new Purchase();
+        purchase.setCustomer(customer);
+        purchase.setProduct(product);
+
         purchaseRepository.save(purchase);
     }
 }
