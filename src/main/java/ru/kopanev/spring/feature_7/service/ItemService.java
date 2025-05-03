@@ -1,5 +1,6 @@
 package ru.kopanev.spring.feature_7.service;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.dialect.lock.OptimisticEntityLockException;
@@ -25,22 +26,23 @@ public class ItemService {
 
     @Retryable(retryFor = OptimisticEntityLockException.class, maxAttempts = 5)
     @Transactional
-    public void incrementRandomEntry() throws InterruptedException {
+    protected void incrementRandomEntry() throws InterruptedException {
         long randomEntryId = ThreadLocalRandom.current().nextLong(1, 41);
 
         Item item = itemRepository.findById(randomEntryId)
                 .orElseThrow(() -> new EntityNotFoundException("Item not found."));
 
-        Thread.sleep(5000);
+        Thread.sleep(5);
 
         item.setVal(item.getVal() + 1);
         itemRepository.save(item);
     }
 
+    @PostConstruct
     public void run() {
         for (int i = 0; i < threadPoolSize; i++) {
             executorService.submit(() -> {
-                for (int j = 0; j < 20; j++) {
+                for (int j = 0; j < 20000; j++) {
                     try {
                         incrementRandomEntry();
                     } catch (InterruptedException e) {
